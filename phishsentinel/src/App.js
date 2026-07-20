@@ -23,7 +23,7 @@ export default function App() {
 
   const handleAnalyze = async () => {
     if (!url.trim() || !model) return;
-    
+
     const trimmedUrl = url.trim().toLowerCase();
     if (!trimmedUrl.startsWith('http://') && !trimmedUrl.startsWith('https://')) {
       setError('Please explicitly include http:// or https:// at the beginning of the URL.');
@@ -83,8 +83,8 @@ export default function App() {
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded border border-accent/40 flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 1L2 4v4c0 3.5 2.5 6.5 6 7 3.5-.5 6-3.5 6-7V4L8 1z" stroke="#00ff88" strokeWidth="1.2" fill="rgba(0,255,136,0.1)"/>
-              <path d="M5 8l2 2 4-4" stroke="#00ff88" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 1L2 4v4c0 3.5 2.5 6.5 6 7 3.5-.5 6-3.5 6-7V4L8 1z" stroke="#00ff88" strokeWidth="1.2" fill="rgba(0,255,136,0.1)" />
+              <path d="M5 8l2 2 4-4" stroke="#00ff88" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <span className="font-display font-bold text-lg tracking-tight text-text">
@@ -104,7 +104,7 @@ export default function App() {
 
         {/* Hero */}
         <div className="mb-12 animate-slide-up">
-          <p className="font-mono text-accent text-xs tracking-widest mb-3">ML-POWERED THREAT DETECTION</p>
+          <p className="font-mono text-accent text-xs tracking-widest mb-3">AI-POWERED THREAT DETECTION</p>
           <h1 className="font-display font-extrabold text-4xl sm:text-6xl leading-none tracking-tight mb-4">
             Detect phishing<br />
             <span className="text-accent">before it strikes.</span>
@@ -118,9 +118,8 @@ export default function App() {
 
         {/* Input */}
         <div className="animate-slide-up animate-slide-up-delay-1 mb-10">
-          <div className={`relative border rounded-lg transition-all duration-300 ${
-            analyzing ? 'border-accent/60' : 'border-border hover:border-muted focus-within:border-accent/60'
-          }`} style={{ background: 'rgba(17,17,24,0.8)' }}>
+          <div className={`relative border rounded-lg transition-all duration-300 ${analyzing ? 'border-accent/60' : 'border-border hover:border-muted focus-within:border-accent/60'
+            }`} style={{ background: 'rgba(17,17,24,0.8)' }}>
             <div className="flex items-center px-4 py-1 border-b border-border/50 gap-2">
               <span className="font-mono text-xs text-muted">URL_INPUT</span>
               {analyzing && (
@@ -149,7 +148,7 @@ export default function App() {
                 {analyzing ? (
                   <span className="flex items-center gap-2">
                     <svg className="animate-spin" width="14" height="14" viewBox="0 0 14 14">
-                      <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="20" strokeDashoffset="5"/>
+                      <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="20" strokeDashoffset="5" />
                     </svg>
                     SCAN
                   </span>
@@ -160,7 +159,7 @@ export default function App() {
           {error && (
             <p className="mt-2 text-danger text-xs font-mono px-1">{error}</p>
           )}
-        
+
         </div>
 
         {/* Result */}

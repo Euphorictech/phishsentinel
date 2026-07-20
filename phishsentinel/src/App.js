@@ -104,7 +104,7 @@ export default function App() {
 
         {/* Hero */}
         <div className="mb-12 animate-slide-up">
-          <p className="font-mono text-accent text-xs tracking-widest mb-3">AI-POWERED THREAT DETECTION</p>
+          <p className="font-mono text-accent text-xs tracking-widest mb-3">ML-POWERED THREAT DETECTION</p>
           <h1 className="font-display font-extrabold text-4xl sm:text-6xl leading-none tracking-tight mb-4">
             Detect phishing<br />
             <span className="text-accent">before it strikes.</span>

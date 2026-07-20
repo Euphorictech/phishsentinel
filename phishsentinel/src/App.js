@@ -106,7 +106,7 @@ export default function App() {
         <div className="mb-12 animate-slide-up">
           <p className="font-mono text-accent text-xs tracking-widest mb-3">ML-POWERED THREAT DETECTION</p>
           <h1 className=" font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
-            font-weight: 700">
+            font-weight: 700" font-extrabold >
             Detect phishing <br />
             <span className="text-accent">before it strikes.</span>
           </h1>

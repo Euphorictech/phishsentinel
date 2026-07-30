@@ -7,6 +7,7 @@ module.exports = {
         mono: ['"IBM Plex Mono"', 'monospace'],
         sans: ['"DM Sans"', 'sans-serif'],
         display: ['"Syne"', 'sans-serif'],
+        montserrat: ['"Montserrat"', 'sans-serif'],
       },
       colors: {
         bg: '#0a0a0f',

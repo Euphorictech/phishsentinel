@@ -2,14 +2,15 @@ import React from 'react';
 
 export default function StatsBar({ history, modelAcc }) {
   const total = history.length;
-  const phishCount = history.filter(h => h.isPhishing).length;
-  const safeCount = total - phishCount;
+  const maliciousCount = history.filter(h => h.phishingProb >= 70).length;
+  const suspiciousCount = history.filter(h => h.phishingProb >= 30 && h.phishingProb < 70).length;
+  const legitimateCount = total - maliciousCount - suspiciousCount;
 
   const stats = [
-    { label: 'MODEL STATUS', value: modelAcc ? 'Active' : '—', color: '#00ff88' },
-    { label: 'ANALYSIS TYPE', value: 'Real-time', color: '#00ff88' },
     { label: 'SCANS THIS SESSION', value: total, color: '#e8e8f0' },
-    { label: 'THREATS DETECTED', value: phishCount, color: phishCount > 0 ? '#ff3366' : '#4a4a6a' },
+    { label: 'LEGITIMATE DETECTED', value: legitimateCount, color: legitimateCount > 0 ? '#00ff88' : '#4a4a6a' },
+    { label: 'SUSPICIOUS DETECTED', value: suspiciousCount, color: suspiciousCount > 0 ? '#ffaa00' : '#4a4a6a' },
+    { label: 'MALICIOUS DETECTED', value: maliciousCount, color: maliciousCount > 0 ? '#ff3366' : '#4a4a6a' },
   ];
 
   return (
@@ -29,20 +30,27 @@ export default function StatsBar({ history, modelAcc }) {
       {total > 0 && (
         <div className="mt-4 pt-4 border-t border-border/50">
           <div className="flex justify-between font-mono text-xs mb-2">
-            <span className="text-accent">{safeCount} safe</span>
-            <span className="text-danger">{phishCount} phishing</span>
+            <span className="text-accent">{legitimateCount} legitimate</span>
+            <span className="text-warn">{suspiciousCount} suspicious</span>
+            <span className="text-danger">{maliciousCount} malicious</span>
           </div>
           <div className="h-2 rounded-full overflow-hidden bg-white/5 flex">
-            {safeCount > 0 && (
+            {legitimateCount > 0 && (
               <div
                 className="h-full bg-accent/60 transition-all duration-700"
-                style={{ width: `${(safeCount / total) * 100}%` }}
+                style={{ width: `${(legitimateCount / total) * 100}%` }}
               />
             )}
-            {phishCount > 0 && (
+            {suspiciousCount > 0 && (
+              <div
+                className="h-full bg-warn/60 transition-all duration-700"
+                style={{ width: `${(suspiciousCount / total) * 100}%` }}
+              />
+            )}
+            {maliciousCount > 0 && (
               <div
                 className="h-full bg-danger/60 transition-all duration-700"
-                style={{ width: `${(phishCount / total) * 100}%` }}
+                style={{ width: `${(maliciousCount / total) * 100}%` }}
               />
             )}
           </div>

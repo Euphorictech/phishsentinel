@@ -81,6 +81,12 @@ body::before {
   animation: glowGreen 2s ease-in-out infinite;
 }
 
+.result-warning {
+  box-shadow: 0 0 30px rgba(255, 170, 0, 0.2), inset 0 0 30px rgba(255, 170, 0, 0.05);
+  border-color: rgba(255, 170, 0, 0.4);
+  animation: glowOrange 2s ease-in-out infinite;
+}
+
 .result-danger {
   box-shadow: 0 0 30px rgba(255, 51, 102, 0.2), inset 0 0 30px rgba(255, 51, 102, 0.05);
   border-color: rgba(255, 51, 102, 0.4);
@@ -90,6 +96,11 @@ body::before {
 @keyframes glowGreen {
   0%, 100% { box-shadow: 0 0 20px rgba(0,255,136,0.2), inset 0 0 20px rgba(0,255,136,0.03); }
   50% { box-shadow: 0 0 50px rgba(0,255,136,0.4), inset 0 0 30px rgba(0,255,136,0.08); }
+}
+
+@keyframes glowOrange {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,170,0,0.2), inset 0 0 20px rgba(255,170,0,0.03); }
+  50% { box-shadow: 0 0 50px rgba(255,170,0,0.4), inset 0 0 30px rgba(255,170,0,0.08); }
 }
 
 @keyframes glowRed {

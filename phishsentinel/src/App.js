@@ -66,7 +66,7 @@ export default function App() {
 
     const fullResult = { ...prediction, ...extracted, url: url.trim(), timestamp: Date.now() };
     setResult(fullResult);
-    setHistory(prev => [fullResult, ...prev.slice(0, 4)]);
+    setHistory(prev => [fullResult, ...prev]);
     setAnalyzing(false);
   };
 
@@ -105,8 +105,7 @@ export default function App() {
         {/* Hero */}
         <div className="mb-12 animate-slide-up">
           <p className="font-mono text-accent text-xs tracking-widest mb-3">ML-POWERED THREAT DETECTION</p>
-          <h1 className="font-family: 'Montserrat', sans-serif;
-  font-weight: 900;">
+          <h1 className="font-montserrat font-black text-3xl sm:text-4xl tracking-tight leading-tight mb-6">
             Detect phishing <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-emerald-400 to-teal-300 drop-shadow-[0_0_15px_rgba(0,255,136,0.35)]">
               before it strikes.
@@ -182,20 +181,36 @@ export default function App() {
           <div className="mt-8 animate-slide-up">
             <p className="font-mono text-xs text-muted mb-3 tracking-widest">SCAN HISTORY</p>
             <div className="space-y-2">
-              {history.slice(1).map((h, i) => (
-                <button
-                  key={h.timestamp}
-                  onClick={() => { setUrl(h.url); setResult(h); }}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded border border-border hover:border-muted/50 transition-all text-left"
-                  style={{ background: 'rgba(17,17,24,0.6)' }}
-                >
-                  <span className={`w-2 h-2 rounded-full flex-shrink-0 ${h.isPhishing ? 'bg-danger' : 'bg-accent'}`} />
-                  <span className="font-mono text-xs text-dim flex-1 truncate">{h.url}</span>
-                  <span className={`font-mono text-xs font-medium flex-shrink-0 ${h.isPhishing ? 'text-danger' : 'text-accent'}`}>
-                    {h.isPhishing ? 'PHISH' : 'SAFE'} {h.confidence}%
-                  </span>
-                </button>
-              ))}
+              {history.slice(1, 21).map((h, i) => {
+                let statusLabel = 'LEGITIMATE';
+                let colorClass = 'text-accent';
+                let dotClass = 'bg-accent';
+
+                if (h.phishingProb >= 70) {
+                  statusLabel = 'HIGH RISK';
+                  colorClass = 'text-danger';
+                  dotClass = 'bg-danger';
+                } else if (h.phishingProb >= 30) {
+                  statusLabel = 'SUSPICIOUS';
+                  colorClass = 'text-warn';
+                  dotClass = 'bg-warn';
+                }
+
+                return (
+                  <button
+                    key={h.timestamp}
+                    onClick={() => { setUrl(h.url); setResult(h); }}
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded border border-border hover:border-muted/50 transition-all text-left"
+                    style={{ background: 'rgba(17,17,24,0.6)' }}
+                  >
+                    <span className={`w-2 h-2 rounded-full flex-shrink-0 ${dotClass}`} />
+                    <span className="font-mono text-xs text-dim flex-1 truncate">{h.url}</span>
+                    <span className={`font-mono text-xs font-medium flex-shrink-0 ${colorClass}`}>
+                      {statusLabel} {h.phishingProb}%
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}

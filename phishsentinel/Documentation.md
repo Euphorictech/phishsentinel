@@ -74,6 +74,6 @@ When a user interacts with PhishSentinel, the following real-time sequence occur
    - The app parses the URL string with regex to calculate structural features (Length, Subdomains, Shorteners).
    - The fetched HTML is injected into an isolated `DOMParser` instance. JavaScript queries (`doc.querySelectorAll`) scour the virtual DOM for iframes, form actions, favicons, and media tags.
    - The resulting data is compressed into a 23-dimensional numerical array `[1, -1, 0, 1...]`.
-4. **Inference:** The JavaScript inference engine reads `model.json`. It passes the 23-dimension array through all 30 decision trees.   
-5. **Overrides:** The system applies deterministic security heuristics. If an IP address is used instead of a domain name, or if the user is targeted by a typosquatting attack, the ML probability is overridden, and the site is clamped to a "Phishing" verdict to guarantee safety.
-6. **Rendering:** The React UI dynamically renders the final Confidence Score, explicitly lists the triggered "Areas of Concern," and generates the Feature Importance graph based on the exported model weights.
+4. **Inference:** The JavaScript inference engine reads `model.json`. It passes the 23-dimension array through all 30 decision trees to determine the threat probability.   
+5. **Overrides:** The system applies deterministic security heuristics. If an IP address is used instead of a domain name, or if the user is targeted by a typosquatting attack, the threat level is overridden and clamped to at least 92% (High Risk / Malicious) to guarantee safety.
+6. **Rendering:** The React UI dynamically renders the final Threat/Suspicion percentage, explicitly classifies the URL based on the defined thresholds (High Risk / Malicious: 70-100%, Suspicious: 30-69%, Legitimate: 0-29%), lists the triggered "Areas of Concern," and segments session statistics across these three classifications.
